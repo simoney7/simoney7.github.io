@@ -663,48 +663,6 @@ p:last-child{ margin-bottom:0; }
 }
 .contact .btn--li:hover{ background:#c98c2c; border-color:#c98c2c; color:var(--navy-deep); }
 .contact .btn--li svg{ width:15px; height:15px; }
-.email-display{
-  display:inline-flex; align-items:center; gap:.65rem;
-  font-family:var(--mono);
-  font-size:.82rem;
-  letter-spacing:.04em;
-  color:rgba(247,246,241,.75);
-  padding:.7rem 1rem;
-  border:1px solid rgba(247,246,241,.18);
-  border-radius:10px;
-  background:rgba(247,246,241,.05);
-  cursor:pointer;
-  transition:background .2s ease, border-color .2s ease, color .2s ease;
-  position:relative;
-  align-self:flex-start;
-  user-select:all;
-}
-.email-display:hover{ background:rgba(247,246,241,.1); border-color:rgba(247,246,241,.35); color:var(--surface-2); }
-.email-display__label{
-  font-size:.6rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:rgba(247,246,241,.45);
-  display:block;
-  margin-bottom:.2rem;
-}
-.email-display__copy{
-  font-size:.65rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:var(--amber);
-  opacity:0;
-  position:absolute; right:.9rem; top:50%; transform:translateY(-50%);
-  transition:opacity .2s ease;
-  pointer-events:none;
-}
-.email-display:hover .email-display__copy{ opacity:1; }
-.contact__tip{
-  font-family:var(--mono);
-  font-size:.65rem;
-  letter-spacing:.08em;
-  color:rgba(247,246,241,.4);
-}
 
 /* ============================================================
    FOOTER
@@ -1492,20 +1450,12 @@ p:last-child{ margin-bottom:0; }
         <p>When I’m not working, I’m probably traveling, watching my favorite sports teams, or getting lost in a good video game.</p>
         <p>I’m currently open to full-time opportunities, so feel free to contact me!</p>
 
-        <div class="contact" id="email">
+        <div class="contact">
           <a class="btn btn--li" href="https://www.linkedin.com/in/simoncasado/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.22 0z"/></svg>
             Connect on LinkedIn
           </a>
 
-          <button class="email-display" id="email-copy" title="Click to copy" aria-label="Copy email address simoncasado2003@gmail.com">
-            <span>
-              <span class="email-display__label">Email</span>
-              simoncasado2003@gmail.com
-            </span>
-            <span class="email-display__copy" aria-hidden="true">Copy</span>
-          </button>
-          <p class="contact__tip">Click to copy · or open in <a href="mailto:simoncasado2003@gmail.com" style="color:var(--amber)">Mail</a></p>
         </div>
       </div>
 
@@ -1661,33 +1611,6 @@ p:last-child{ margin-bottom:0; }
     if (ev.key === "Escape" && lb.classList.contains("open")) close();
   });
 
-  /* Email copy button */
-  var copyBtn = document.getElementById("email-copy");
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
-      var addr = "simoncasado2003@gmail.com";
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(addr).then(function () { flash(); });
-      } else {
-        var ta = document.createElement("textarea");
-        ta.value = addr; ta.style.position = "fixed"; ta.style.opacity = "0";
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand("copy"); } catch(e) {}
-        document.body.removeChild(ta);
-        flash();
-      }
-      function flash() {
-        var copyLabel = copyBtn.querySelector(".email-display__copy");
-        if (!copyLabel) return;
-        copyLabel.textContent = "Copied!";
-        copyLabel.style.opacity = "1";
-        setTimeout(function () {
-          copyLabel.textContent = "Copy";
-          copyLabel.style.opacity = "";
-        }, 2000);
-      }
-    });
-  }
 })();
 </script>
 
